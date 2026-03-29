@@ -322,35 +322,39 @@ export default function Home({ setPage }) {
             {/* Colleges Pie Chart */}
             <div style={{ background: colors.offWhite, borderRadius: "16px", padding: "2rem", textAlign: "center" }}>
               <div style={{ fontSize: "0.85rem", color: colors.gold, fontWeight: "600", marginBottom: "1rem", textTransform: "uppercase" }}>Colleges by Type</div>
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
-                  <Pie data={[{ name: "Schools", value: 150 }, { name: "Jr Colleges", value: 120 }, { name: "Degree", value: 130 }, { name: "B.Tech", value: 80 }, { name: "MBBS", value: 20 }]} cx="50%" cy="50%" outerRadius={100} fill="#8884d8" dataKey="value" label>
-                    <Cell fill={colors.navy} />
-                    <Cell fill={colors.navyLight} />
-                    <Cell fill={colors.gold} />
-                    <Cell fill={colors.goldLight} />
-                    <Cell fill="#25D366" />
-                  </Pie>
-                  <Tooltip formatter={(value) => `${value} colleges`} />
-                </PieChart>
-              </ResponsiveContainer>
+              <div style={{ width: "100%", height: "320px" }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie data={[{ name: "Schools", value: 150 }, { name: "Jr Colleges", value: 120 }, { name: "Degree", value: 130 }, { name: "B.Tech", value: 80 }, { name: "MBBS", value: 20 }]} cx="50%" cy="50%" outerRadius={80} fill="#8884d8" dataKey="value" label={{ fontSize: 12 }}>
+                      <Cell fill={colors.navy} />
+                      <Cell fill={colors.navyLight} />
+                      <Cell fill={colors.gold} />
+                      <Cell fill={colors.goldLight} />
+                      <Cell fill="#25D366" />
+                    </Pie>
+                    <Tooltip formatter={(value) => `${value} colleges`} />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
             </div>
 
             {/* Admissions Distribution */}
             <div style={{ background: colors.offWhite, borderRadius: "16px", padding: "2rem", textAlign: "center" }}>
               <div style={{ fontSize: "0.85rem", color: colors.gold, fontWeight: "600", marginBottom: "1rem", textTransform: "uppercase" }}>Admissions Distribution</div>
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
-                  <Pie data={[{ name: "School", value: 4500 }, { name: "Jr College", value: 3200 }, { name: "Degree", value: 3800 }, { name: "B.Tech", value: 2400 }, { name: "MBBS", value: 1100 }]} cx="50%" cy="50%" outerRadius={100} fill="#8884d8" dataKey="value" label>
-                    <Cell fill={colors.navy} />
-                    <Cell fill={colors.navyLight} />
-                    <Cell fill={colors.gold} />
-                    <Cell fill={colors.goldLight} />
-                    <Cell fill="#25D366" />
-                  </Pie>
-                  <Tooltip formatter={(value) => `${value} admissions`} />
-                </PieChart>
-              </ResponsiveContainer>
+              <div style={{ width: "100%", height: "320px" }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie data={[{ name: "School", value: 4500 }, { name: "Jr College", value: 3200 }, { name: "Degree", value: 3800 }, { name: "B.Tech", value: 2400 }, { name: "MBBS", value: 1100 }]} cx="50%" cy="50%" outerRadius={80} fill="#8884d8" dataKey="value" label={{ fontSize: 12 }}>
+                      <Cell fill={colors.navy} />
+                      <Cell fill={colors.navyLight} />
+                      <Cell fill={colors.gold} />
+                      <Cell fill={colors.goldLight} />
+                      <Cell fill="#25D366" />
+                    </Pie>
+                    <Tooltip formatter={(value) => `${value} admissions`} />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
             </div>
           </div>
         </div>
