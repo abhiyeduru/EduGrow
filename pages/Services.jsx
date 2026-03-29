@@ -51,7 +51,7 @@ export default function Services() {
       <div
         style={{
           background: `linear-gradient(145deg, ${colors.navy}, ${colors.navyMid})`,
-          padding: "4.5rem 2.5rem 3.5rem",
+          padding: "clamp(2rem, 5vw, 4.5rem) clamp(1.5rem, 5vw, 2.5rem) clamp(2rem, 5vw, 3.5rem)",
           textAlign: "center",
         }}
       >
@@ -71,7 +71,7 @@ export default function Services() {
           style={{
             fontFamily: "'Playfair Display', serif",
             color: colors.white,
-            fontSize: "2.8rem",
+            fontSize: "clamp(1.8rem, 5vw, 2.8rem)",
             fontWeight: "800",
             marginBottom: "0.75rem",
           }}
@@ -81,7 +81,7 @@ export default function Services() {
         <p
           style={{
             color: "rgba(255,255,255,0.6)",
-            fontSize: "1rem",
+            fontSize: "clamp(0.9rem, 2vw, 1rem)",
             maxWidth: "520px",
             margin: "0 auto",
           }}
@@ -98,11 +98,11 @@ export default function Services() {
         }}
       />
 
-      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "4rem 2.5rem" }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 2.5rem)" }}>
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(310px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
             gap: "1.5rem",
           }}
         >
@@ -113,7 +113,7 @@ export default function Services() {
               style={{
                 background: colors.white,
                 borderRadius: "16px",
-                padding: "2rem",
+                padding: "clamp(1.5rem, 3vw, 2rem)",
                 border: `1px solid ${colors.border}`,
                 borderTop: `4px solid ${color}`,
                 display: "flex",
@@ -130,7 +130,7 @@ export default function Services() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  fontSize: "1.7rem",
+                  fontSize: "clamp(1.5rem, 4vw, 1.7rem)",
                 }}
               >
                 {icon}
@@ -140,7 +140,7 @@ export default function Services() {
                   fontFamily: "'Playfair Display', serif",
                   fontWeight: "700",
                   color: colors.navy,
-                  fontSize: "1.1rem",
+                  fontSize: "clamp(0.95rem, 2vw, 1.1rem)",
                 }}
               >
                 {title}
@@ -150,7 +150,7 @@ export default function Services() {
                   <span
                     key={t}
                     style={{
-                      fontSize: "0.7rem",
+                      fontSize: "clamp(0.65rem, 1.5vw, 0.7rem)",
                       fontWeight: "600",
                       color: color,
                       background: `${color}15`,
@@ -165,7 +165,7 @@ export default function Services() {
               </div>
               <p
                 style={{
-                  fontSize: "0.88rem",
+                  fontSize: "clamp(0.8rem, 2vw, 0.88rem)",
                   color: colors.textMuted,
                   lineHeight: 1.7,
                   margin: 0,
@@ -182,7 +182,7 @@ export default function Services() {
           style={{
             marginTop: "3rem",
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
             gap: "1.25rem",
           }}
         >
@@ -211,19 +211,19 @@ export default function Services() {
               style={{
                 background: colors.sky,
                 borderRadius: "14px",
-                padding: "1.5rem",
+                padding: "clamp(1.25rem, 3vw, 1.5rem)",
                 border: `1px solid ${colors.skyMid}`,
                 textAlign: "center",
               }}
             >
-              <div style={{ fontSize: "2rem", marginBottom: "0.6rem" }}>
+              <div style={{ fontSize: "clamp(1.5rem, 4vw, 2rem)", marginBottom: "0.6rem" }}>
                 {icon}
               </div>
               <div
                 style={{
                   fontWeight: "700",
                   color,
-                  fontSize: "0.95rem",
+                  fontSize: "clamp(0.85rem, 2vw, 0.95rem)",
                   marginBottom: "0.4rem",
                 }}
               >
@@ -231,7 +231,7 @@ export default function Services() {
               </div>
               <div
                 style={{
-                  fontSize: "0.82rem",
+                  fontSize: "clamp(0.75rem, 2vw, 0.82rem)",
                   color: colors.textMuted,
                   lineHeight: 1.6,
                 }}

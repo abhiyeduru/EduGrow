@@ -22,7 +22,7 @@ export default function Contact() {
       <div
         style={{
           background: `linear-gradient(145deg, ${colors.navy}, ${colors.navyMid})`,
-          padding: "4.5rem 2.5rem 3.5rem",
+          padding: "clamp(2rem, 5vw, 4.5rem) clamp(1.5rem, 5vw, 2.5rem) clamp(2rem, 5vw, 3.5rem)",
           textAlign: "center",
         }}
       >
@@ -42,7 +42,7 @@ export default function Contact() {
           style={{
             fontFamily: "'Playfair Display', serif",
             color: colors.white,
-            fontSize: "2.8rem",
+            fontSize: "clamp(1.8rem, 5vw, 2.8rem)",
             fontWeight: "800",
             marginBottom: "0.75rem",
           }}
@@ -52,7 +52,7 @@ export default function Contact() {
         <p
           style={{
             color: "rgba(255,255,255,0.6)",
-            fontSize: "1rem",
+            fontSize: "clamp(0.9rem, 2vw, 1rem)",
             maxWidth: "480px",
             margin: "0 auto",
           }}
@@ -68,11 +68,11 @@ export default function Contact() {
         }}
       />
 
-      <div style={{ maxWidth: "980px", margin: "0 auto", padding: "4rem 2.5rem" }}>
+      <div style={{ maxWidth: "980px", margin: "0 auto", padding: "clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 2.5rem)" }}>
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
             gap: "2rem",
           }}
         >
@@ -94,7 +94,7 @@ export default function Contact() {
                 style={{
                   background: colors.white,
                   borderRadius: "14px",
-                  padding: "1.4rem",
+                  padding: "clamp(1rem, 3vw, 1.4rem)",
                   border: `1px solid ${colors.border}`,
                   borderLeft: `4px solid ${color}`,
                   display: "flex",
@@ -111,7 +111,7 @@ export default function Contact() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: "1.2rem",
+                    fontSize: "clamp(1rem, 2vw, 1.2rem)",
                     flexShrink: 0,
                   }}
                 >
@@ -133,7 +133,7 @@ export default function Contact() {
                     style={{
                       color: colors.navy,
                       fontWeight: "600",
-                      fontSize: "0.9rem",
+                      fontSize: "clamp(0.85rem, 2vw, 0.9rem)",
                       lineHeight: 1.5,
                     }}
                   >
@@ -176,7 +176,7 @@ export default function Contact() {
                     <div
                       style={{
                         color: "rgba(255,255,255,0.55)",
-                        fontSize: "0.68rem",
+                        fontSize: "clamp(0.6rem, 1.5vw, 0.68rem)",
                         marginTop: "0.3rem",
                       }}
                     >
@@ -193,19 +193,19 @@ export default function Contact() {
             style={{
               background: colors.white,
               borderRadius: "16px",
-              padding: "2rem",
+              padding: "clamp(1.5rem, 3vw, 2rem)",
               border: `1px solid ${colors.border}`,
               borderTop: `4px solid ${colors.gold}`,
             }}
           >
             {sent ? (
               <div style={{ textAlign: "center", padding: "2rem 1rem" }}>
-                <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>🎉</div>
+                <div style={{ fontSize: "clamp(2rem, 5vw, 3rem)", marginBottom: "1rem" }}>🎉</div>
                 <div
                   style={{
                     fontFamily: "'Playfair Display', serif",
                     color: colors.navy,
-                    fontSize: "1.4rem",
+                    fontSize: "clamp(1.1rem, 3vw, 1.4rem)",
                     fontWeight: "700",
                     marginBottom: "0.5rem",
                   }}
@@ -215,7 +215,7 @@ export default function Contact() {
                 <div
                   style={{
                     color: colors.textMuted,
-                    fontSize: "0.9rem",
+                    fontSize: "clamp(0.85rem, 2vw, 0.9rem)",
                     lineHeight: 1.6,
                   }}
                 >
@@ -244,7 +244,7 @@ export default function Contact() {
                   style={{
                     fontFamily: "'Playfair Display', serif",
                     color: colors.navy,
-                    fontSize: "1.3rem",
+                    fontSize: "clamp(1.1rem, 3vw, 1.3rem)",
                     fontWeight: "700",
                     marginBottom: "1.5rem",
                   }}
@@ -281,10 +281,11 @@ export default function Contact() {
                         borderRadius: "8px",
                         border: `1px solid ${colors.border}`,
                         background: colors.offWhite,
-                        fontSize: "0.9rem",
+                        fontSize: "clamp(0.85rem, 2vw, 0.9rem)",
                         color: colors.text,
                         outline: "none",
                         fontFamily: "'DM Sans', sans-serif",
+                        boxSizing: "border-box",
                       }}
                     />
                   </div>
@@ -312,9 +313,10 @@ export default function Contact() {
                       borderRadius: "8px",
                       border: `1px solid ${colors.border}`,
                       background: colors.offWhite,
-                      fontSize: "0.9rem",
+                      fontSize: "clamp(0.85rem, 2vw, 0.9rem)",
                       color: form.type ? colors.text : colors.textMuted,
                       fontFamily: "'DM Sans', sans-serif",
+                      boxSizing: "border-box",
                     }}
                   >
                     <option value="">Select type…</option>
@@ -356,10 +358,11 @@ export default function Contact() {
                       borderRadius: "8px",
                       border: `1px solid ${colors.border}`,
                       background: colors.offWhite,
-                      fontSize: "0.9rem",
+                      fontSize: "clamp(0.85rem, 2vw, 0.9rem)",
                       color: colors.text,
                       resize: "vertical",
                       fontFamily: "'DM Sans', sans-serif",
+                      boxSizing: "border-box",
                     }}
                     placeholder="Tell us about your institution and admission goals…"
                   />

@@ -65,7 +65,7 @@ export default function HowItWorks() {
       <div
         style={{
           background: `linear-gradient(145deg, ${colors.navy}, ${colors.navyMid})`,
-          padding: "4.5rem 2.5rem 3.5rem",
+          padding: "clamp(2rem, 5vw, 4.5rem) clamp(1.5rem, 5vw, 2.5rem) clamp(2rem, 5vw, 3.5rem)",
           textAlign: "center",
         }}
       >
@@ -85,7 +85,7 @@ export default function HowItWorks() {
           style={{
             fontFamily: "'Playfair Display', serif",
             color: colors.white,
-            fontSize: "2.8rem",
+            fontSize: "clamp(1.8rem, 5vw, 2.8rem)",
             fontWeight: "800",
             marginBottom: "0.75rem",
           }}
@@ -95,7 +95,7 @@ export default function HowItWorks() {
         <p
           style={{
             color: "rgba(255,255,255,0.6)",
-            fontSize: "1rem",
+            fontSize: "clamp(0.9rem, 2vw, 1rem)",
             maxWidth: "520px",
             margin: "0 auto",
           }}
@@ -112,7 +112,7 @@ export default function HowItWorks() {
         }}
       />
 
-      <div style={{ maxWidth: "860px", margin: "0 auto", padding: "4rem 2.5rem" }}>
+      <div style={{ maxWidth: "860px", margin: "0 auto", padding: "clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 2.5rem)" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
           {steps.map((step, i) => (
             <div key={step.num} style={{ display: "flex", gap: "0", alignItems: "stretch" }}>
@@ -122,14 +122,14 @@ export default function HowItWorks() {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  width: "64px",
+                  width: "clamp(50px, 10vw, 64px)",
                   flexShrink: 0,
                 }}
               >
                 <div
                   style={{
-                    width: "48px",
-                    height: "48px",
+                    width: "clamp(40px, 8vw, 48px)",
+                    height: "clamp(40px, 8vw, 48px)",
                     borderRadius: "50%",
                     background: step.color,
                     color: colors.white,
@@ -137,7 +137,7 @@ export default function HowItWorks() {
                     alignItems: "center",
                     justifyContent: "center",
                     fontWeight: "800",
-                    fontSize: "0.8rem",
+                    fontSize: "clamp(0.7rem, 2vw, 0.8rem)",
                     border: `3px solid ${colors.white}`,
                     boxShadow: `0 0 0 2px ${step.color}40`,
                     flexShrink: 0,
@@ -165,15 +165,15 @@ export default function HowItWorks() {
                   flex: 1,
                   background: colors.white,
                   borderRadius: "14px",
-                  padding: "1.5rem 1.75rem",
-                  marginLeft: "1.25rem",
+                  padding: "clamp(1rem, 3vw, 1.5rem) clamp(1rem, 3vw, 1.75rem)",
+                  marginLeft: "clamp(0.75rem, 2vw, 1.25rem)",
                   marginBottom: i < steps.length - 1 ? "1.25rem" : 0,
                   border: `1px solid ${colors.border}`,
                   borderLeft: `4px solid ${step.color}`,
                 }}
               >
                 <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem" }}>
-                  <div style={{ fontSize: "1.8rem", lineHeight: 1 }}>
+                  <div style={{ fontSize: "clamp(1.5rem, 4vw, 1.8rem)", lineHeight: 1 }}>
                     {step.icon}
                   </div>
                   <div style={{ flex: 1 }}>
@@ -181,7 +181,7 @@ export default function HowItWorks() {
                       style={{
                         fontWeight: "700",
                         color: colors.navy,
-                        fontSize: "1.05rem",
+                        fontSize: "clamp(0.9rem, 2vw, 1.05rem)",
                         marginBottom: "0.2rem",
                       }}
                     >
@@ -190,7 +190,7 @@ export default function HowItWorks() {
                     <div
                       style={{
                         display: "inline-block",
-                        fontSize: "0.7rem",
+                        fontSize: "clamp(0.65rem, 1.5vw, 0.7rem)",
                         fontWeight: "600",
                         color: step.color,
                         background: `${step.color}18`,
@@ -204,7 +204,7 @@ export default function HowItWorks() {
                     </div>
                     <div
                       style={{
-                        fontSize: "0.87rem",
+                        fontSize: "clamp(0.8rem, 2vw, 0.87rem)",
                         color: colors.textMuted,
                         lineHeight: 1.65,
                       }}
@@ -224,7 +224,7 @@ export default function HowItWorks() {
             marginTop: "3rem",
             background: colors.navy,
             borderRadius: "16px",
-            padding: "2.5rem",
+            padding: "clamp(1.5rem, 4vw, 2.5rem)",
             textAlign: "center",
           }}
         >
@@ -232,7 +232,7 @@ export default function HowItWorks() {
             style={{
               fontFamily: "'Playfair Display', serif",
               color: colors.goldLight,
-              fontSize: "1.5rem",
+              fontSize: "clamp(1.2rem, 4vw, 1.5rem)",
               fontWeight: "700",
               marginBottom: "0.6rem",
             }}
@@ -242,7 +242,7 @@ export default function HowItWorks() {
           <div
             style={{
               color: "rgba(255,255,255,0.6)",
-              fontSize: "0.9rem",
+              fontSize: "clamp(0.85rem, 2vw, 0.9rem)",
               marginBottom: "1.5rem",
             }}
           >
@@ -258,7 +258,7 @@ export default function HowItWorks() {
               padding: "0.85rem 2.2rem",
               borderRadius: "8px",
               fontWeight: "700",
-              fontSize: "0.95rem",
+              fontSize: "clamp(0.85rem, 2vw, 0.95rem)",
               fontFamily: "'DM Sans', sans-serif",
             }}
           >

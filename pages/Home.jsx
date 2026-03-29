@@ -8,7 +8,7 @@ export default function Home({ setPage }) {
       <div
         style={{
           background: `linear-gradient(145deg, ${colors.navy} 0%, ${colors.navyMid} 60%, #1E4D9A 100%)`,
-          padding: "3rem 2.5rem 4rem",
+          padding: "clamp(2rem, 5vw, 3rem) clamp(1.5rem, 5vw, 2.5rem)",
           position: "relative",
           overflow: "hidden",
         }}
@@ -29,7 +29,7 @@ export default function Home({ setPage }) {
             maxWidth: "1200px",
             margin: "0 auto",
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
             gap: "2rem",
             alignItems: "center",
             position: "relative",
@@ -48,11 +48,11 @@ export default function Home({ setPage }) {
                 borderRadius: "100px",
                 padding: "0.35rem 1.1rem",
                 marginBottom: "1.75rem",
+                fontSize: "clamp(0.65rem, 2vw, 0.7rem)",
               }}
             >
               <span
                 style={{
-                  fontSize: "0.7rem",
                   color: colors.goldLight,
                   fontWeight: "600",
                   letterSpacing: "0.1em",
@@ -66,7 +66,7 @@ export default function Home({ setPage }) {
               className="fade-up-1"
               style={{
                 fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(2rem, 5.5vw, 3.8rem)",
+                fontSize: "clamp(1.5rem, 6vw, 3.8rem)",
                 fontWeight: "800",
                 color: colors.white,
                 lineHeight: 1.15,
@@ -91,7 +91,7 @@ export default function Home({ setPage }) {
               className="fade-up-2"
               style={{
                 color: "rgba(255,255,255,0.65)",
-                fontSize: "1.1rem",
+                fontSize: "clamp(0.95rem, 3vw, 1.1rem)",
                 marginBottom: "2.5rem",
                 lineHeight: 1.7,
               }}
@@ -102,7 +102,12 @@ export default function Home({ setPage }) {
             </p>
             <div
               className="fade-up-3"
-              style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}
+              style={{
+                display: "flex",
+                gap: "1rem",
+                flexWrap: "wrap",
+                flexDirection: "column",
+              }}
             >
               <button
                 className="cta-btn"
@@ -116,6 +121,8 @@ export default function Home({ setPage }) {
                   fontWeight: "600",
                   fontSize: "0.95rem",
                   transition: "all 0.2s",
+                  width: "100%",
+                  maxWidth: "300px",
                 }}
               >
                 Get Started Now →
@@ -132,6 +139,8 @@ export default function Home({ setPage }) {
                   fontWeight: "500",
                   fontSize: "0.95rem",
                   transition: "all 0.2s",
+                  width: "100%",
+                  maxWidth: "300px",
                 }}
               >
                 See How It Works
@@ -139,15 +148,37 @@ export default function Home({ setPage }) {
             </div>
           </div>
 
-          {/* Right 3D */}
-          <div style={{ height: "400px" }}>
+          {/* Right 3D - Hidden on mobile */}
+          <div
+            style={{
+              height: "400px",
+              display: "none",
+            }}
+            className="hero-3d"
+          >
             <Hero3D />
           </div>
         </div>
+
+        <style>{`
+          @media (min-width: 769px) {
+            .hero-3d {
+              display: block !important;
+            }
+          }
+        `}</style>
       </div>
 
       {/* Stats bar */}
-      <div style={{ background: colors.gold, display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
+      <div
+        style={{
+          background: colors.gold,
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+          justifyContent: "center",
+          flexWrap: "wrap",
+        }}
+      >
         {[
           ["Since 2012", "Proven Track Record"],
           ["All India", "Admissions Support"],
@@ -157,7 +188,7 @@ export default function Home({ setPage }) {
           <div
             key={l}
             style={{
-              padding: "1.3rem 2.5rem",
+              padding: "1.3rem 1.5rem",
               textAlign: "center",
               borderRight: "1px solid rgba(255,255,255,0.3)",
             }}
@@ -167,7 +198,7 @@ export default function Home({ setPage }) {
                 fontFamily: "'Playfair Display', serif",
                 color: colors.white,
                 fontWeight: "700",
-                fontSize: "1.15rem",
+                fontSize: "clamp(0.9rem, 3vw, 1.15rem)",
               }}
             >
               {v}
@@ -175,7 +206,7 @@ export default function Home({ setPage }) {
             <div
               style={{
                 color: "rgba(255,255,255,0.8)",
-                fontSize: "0.72rem",
+                fontSize: "clamp(0.65rem, 2vw, 0.72rem)",
                 letterSpacing: "0.07em",
                 textTransform: "uppercase",
                 marginTop: "0.2rem",
@@ -188,7 +219,7 @@ export default function Home({ setPage }) {
       </div>
 
       {/* Who We Serve */}
-      <div style={{ background: colors.white, padding: "4.5rem 2.5rem" }}>
+      <div style={{ background: colors.white, padding: "clamp(2rem, 5vw, 4.5rem) clamp(1.5rem, 5vw, 2.5rem)" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "3rem" }}>
             <div
@@ -206,7 +237,7 @@ export default function Home({ setPage }) {
             <h2
               style={{
                 fontFamily: "'Playfair Display', serif",
-                fontSize: "2.2rem",
+                fontSize: "clamp(1.5rem, 5vw, 2.2rem)",
                 color: colors.navy,
                 fontWeight: "700",
               }}
@@ -217,7 +248,7 @@ export default function Home({ setPage }) {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
               gap: "1.25rem",
             }}
           >
@@ -240,14 +271,14 @@ export default function Home({ setPage }) {
                   borderTop: `4px solid ${colors.navy}`,
                 }}
               >
-                <div style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>
+                <div style={{ fontSize: "clamp(1.5rem, 4vw, 2rem)", marginBottom: "0.75rem" }}>
                   {icon}
                 </div>
                 <div
                   style={{
                     fontWeight: "700",
                     color: colors.navy,
-                    fontSize: "0.95rem",
+                    fontSize: "clamp(0.85rem, 2vw, 0.95rem)",
                     marginBottom: "0.4rem",
                   }}
                 >
@@ -255,7 +286,7 @@ export default function Home({ setPage }) {
                 </div>
                 <div
                   style={{
-                    fontSize: "0.8rem",
+                    fontSize: "clamp(0.75rem, 2vw, 0.8rem)",
                     color: colors.textMuted,
                     lineHeight: 1.55,
                   }}
@@ -269,7 +300,7 @@ export default function Home({ setPage }) {
       </div>
 
       {/* Quick Services Preview */}
-      <div style={{ background: colors.offWhite, padding: "4.5rem 2.5rem" }}>
+      <div style={{ background: colors.offWhite, padding: "clamp(2rem, 5vw, 4.5rem) clamp(1.5rem, 5vw, 2.5rem)" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "3rem" }}>
             <div
@@ -287,7 +318,7 @@ export default function Home({ setPage }) {
             <h2
               style={{
                 fontFamily: "'Playfair Display', serif",
-                fontSize: "2.2rem",
+                fontSize: "clamp(1.5rem, 5vw, 2.2rem)",
                 color: colors.navy,
                 fontWeight: "700",
               }}
@@ -339,14 +370,14 @@ export default function Home({ setPage }) {
                   borderLeft: `4px solid ${accent}`,
                 }}
               >
-                <div style={{ fontSize: "1.8rem", marginBottom: "0.85rem" }}>
+                <div style={{ fontSize: "clamp(1.5rem, 4vw, 1.8rem)", marginBottom: "0.85rem" }}>
                   {icon}
                 </div>
                 <div
                   style={{
                     fontWeight: "700",
                     color: colors.navy,
-                    fontSize: "1rem",
+                    fontSize: "clamp(0.9rem, 2vw, 1rem)",
                     marginBottom: "0.5rem",
                   }}
                 >
@@ -354,7 +385,7 @@ export default function Home({ setPage }) {
                 </div>
                 <div
                   style={{
-                    fontSize: "0.86rem",
+                    fontSize: "clamp(0.8rem, 2vw, 0.86rem)",
                     color: colors.textMuted,
                     lineHeight: 1.65,
                   }}
@@ -389,7 +420,7 @@ export default function Home({ setPage }) {
       <div
         style={{
           background: `linear-gradient(135deg, ${colors.navy} 0%, ${colors.navyLight} 100%)`,
-          padding: "3.5rem 2.5rem",
+          padding: "clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 5vw, 2.5rem)",
           textAlign: "center",
         }}
       >
@@ -397,7 +428,7 @@ export default function Home({ setPage }) {
           style={{
             fontFamily: "'Playfair Display', serif",
             color: colors.goldLight,
-            fontSize: "1.8rem",
+            fontSize: "clamp(1.3rem, 5vw, 1.8rem)",
             marginBottom: "0.75rem",
             fontWeight: "700",
           }}
@@ -408,7 +439,7 @@ export default function Home({ setPage }) {
           style={{
             color: "rgba(255,255,255,0.6)",
             marginBottom: "2rem",
-            fontSize: "0.95rem",
+            fontSize: "clamp(0.9rem, 2vw, 0.95rem)",
           }}
         >
           Ready to scale your institution's reach and impact? Let's connect.
@@ -423,7 +454,7 @@ export default function Home({ setPage }) {
             padding: "0.9rem 2.4rem",
             borderRadius: "8px",
             fontWeight: "700",
-            fontSize: "1rem",
+            fontSize: "0.95rem",
             transition: "all 0.2s",
           }}
         >
