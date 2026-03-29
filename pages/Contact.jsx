@@ -16,13 +16,17 @@ export default function Contact() {
   
   const submit = () => {
     if (form.name && form.phone) {
-      setSent(true);
-      // Open WhatsApp after 1 second
+      // Create message
+      const message = `Hi, I'm ${form.name} from ${form.institution || "an institution"}. I'm interested in your admission services for ${form.type || "our institution"}. Please contact me at ${form.phone}. ${form.message ? `Additional info: ${form.message}` : ""}`;
+      
+      // Open WhatsApp directly with message
+      const whatsappUrl = `https://wa.me/919381791038?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, "_blank");
+      
+      // Show success message after a short delay
       setTimeout(() => {
-        const message = `Hi, I'm ${form.name} from ${form.institution || "an institution"}. I'm interested in your admission services for ${form.type || "our institution"}. Please contact me at ${form.phone}.`;
-        const whatsappUrl = `https://wa.me/919381791038?text=${encodeURIComponent(message)}`;
-        window.open(whatsappUrl, "_blank");
-      }, 1000);
+        setSent(true);
+      }, 500);
     }
   };
 
@@ -91,7 +95,7 @@ export default function Contact() {
         >
           {sent ? (
             <div style={{ textAlign: "center", padding: "2rem 1rem" }}>
-              <div style={{ fontSize: "clamp(2rem, 5vw, 3rem)", marginBottom: "1rem" }}>🎉</div>
+              <div style={{ fontSize: "clamp(2rem, 5vw, 3rem)", marginBottom: "1rem" }}>✅</div>
               <div
                 style={{
                   fontFamily: "'Playfair Display', serif",
@@ -101,7 +105,7 @@ export default function Contact() {
                   marginBottom: "0.5rem",
                 }}
               >
-                Enquiry Submitted!
+                Opening WhatsApp...
               </div>
               <div
                 style={{
@@ -111,22 +115,42 @@ export default function Contact() {
                   marginBottom: "1rem",
                 }}
               >
-                Thank you, {form.name}! Our team will reach out to you via WhatsApp shortly.
+                Your message is being sent to our team. If WhatsApp doesn't open, please click the button below.
               </div>
+              <button
+                onClick={() => {
+                  const message = `Hi, I'm ${form.name} from ${form.institution || "an institution"}. I'm interested in your admission services for ${form.type || "our institution"}. Please contact me at ${form.phone}. ${form.message ? `Additional info: ${form.message}` : ""}`;
+                  const whatsappUrl = `https://wa.me/919381791038?text=${encodeURIComponent(message)}`;
+                  window.open(whatsappUrl, "_blank");
+                }}
+                style={{
+                  background: "#25D366",
+                  color: colors.white,
+                  border: "none",
+                  padding: "0.8rem 1.5rem",
+                  borderRadius: "8px",
+                  fontWeight: "600",
+                  fontSize: "0.9rem",
+                  cursor: "pointer",
+                  marginRight: "0.5rem",
+                }}
+              >
+                📱 Open WhatsApp
+              </button>
               <button
                 onClick={() => setSent(false)}
                 style={{
                   background: colors.navy,
                   color: colors.white,
                   border: "none",
-                  padding: "0.7rem 1.75rem",
+                  padding: "0.8rem 1.5rem",
                   borderRadius: "8px",
                   fontWeight: "600",
                   fontSize: "0.9rem",
                   cursor: "pointer",
                 }}
               >
-                Submit Another →
+                Send Another
               </button>
             </div>
           ) : (
@@ -263,7 +287,7 @@ export default function Contact() {
                 onClick={submit}
                 style={{
                   width: "100%",
-                  background: colors.navy,
+                  background: "#25D366",
                   color: colors.white,
                   border: "none",
                   padding: "0.9rem",
@@ -274,7 +298,7 @@ export default function Contact() {
                   cursor: "pointer",
                 }}
               >
-                Submit & Connect on WhatsApp →
+                📱 Send via WhatsApp
               </button>
             </>
           )}
