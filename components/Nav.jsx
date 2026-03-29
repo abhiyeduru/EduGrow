@@ -51,28 +51,16 @@ export default function Nav({ page, setPage }) {
           >
             🎓
           </div>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                color: colors.white,
-                fontWeight: "700",
-                fontSize: "1rem",
-                lineHeight: 1,
-              }}
-            >
-              EduAdmissiongrow
-            </div>
-            <div
-              style={{
-                color: colors.goldLight,
-                fontSize: "0.6rem",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-              }}
-            >
-              .com
-            </div>
+          <div
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              color: colors.white,
+              fontWeight: "700",
+              fontSize: "1rem",
+              lineHeight: 1,
+            }}
+          >
+            Edu Admission grow
           </div>
         </div>
 
@@ -188,6 +176,14 @@ export default function Nav({ page, setPage }) {
           to {
             opacity: 1;
             transform: translateY(0);
+          }
+        }
+        @keyframes blink {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.3;
           }
         }
       `}</style>

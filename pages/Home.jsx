@@ -1,7 +1,6 @@
 import { colors } from "../styles/theme";
 import Hero3D from "../components/Hero3D";
 import { useState, useEffect } from "react";
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
 // Counter Component
 function CounterComponent({ target }) {
@@ -97,8 +96,32 @@ function ContactFormComponent() {
 }
 
 export default function Home({ setPage }) {
+  const [chatOpen, setChatOpen] = useState(false);
+
   return (
     <div style={{ paddingTop: "66px" }}>
+      {/* Company Name Header */}
+      <div
+        style={{
+          background: `linear-gradient(135deg, ${colors.navy} 0%, ${colors.navyLight} 100%)`,
+          padding: "1.5rem",
+          textAlign: "center",
+          borderBottom: `2px solid ${colors.gold}`,
+        }}
+      >
+        <div
+          style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: "clamp(1.5rem, 4vw, 2.2rem)",
+            fontWeight: "800",
+            color: colors.white,
+            letterSpacing: "0.05em",
+          }}
+        >
+          <span style={{ color: colors.gold }}>EduAdmissiongrow</span>
+        </div>
+      </div>
+
       {/* Marquee Banner */}
       <div
         style={{
@@ -112,6 +135,11 @@ export default function Home({ setPage }) {
           @keyframes marquee {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
+          }
+          @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 100%; }
+            100% { width: 100%; }
           }
           .marquee-text {
             animation: marquee 20s linear infinite;
@@ -173,192 +201,63 @@ export default function Home({ setPage }) {
               fontWeight: "800",
               marginBottom: "1rem",
               lineHeight: 1.2,
+              background: `linear-gradient(90deg, ${colors.white}, ${colors.gold}, ${colors.white})`,
+              backgroundSize: "200% auto",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              animation: "shimmer 3s linear infinite",
             }}
           >
-            2026: <span style={{ color: colors.gold }}>15,000+</span> Admissions Completed
+            <span style={{ color: colors.gold }}>15,000+</span> Admissions Completed
           </h2>
+
+          <div style={{ marginBottom: "2rem", maxWidth: "600px", margin: "0 auto 2rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.8rem" }}>
+              <span style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", fontWeight: "600", letterSpacing: "0.05em" }}>Progress</span>
+              <span style={{ color: colors.gold, fontSize: "1.3rem", fontWeight: "800", textShadow: `0 0 10px ${colors.gold}` }}>
+                <CounterComponent target={15000} />
+              </span>
+            </div>
+            <div style={{ width: "100%", height: "12px", background: "rgba(255,255,255,0.15)", borderRadius: "10px", overflow: "hidden", border: `2px solid ${colors.gold}`, boxShadow: `inset 0 2px 4px rgba(0,0,0,0.2)` }}>
+              <div
+                style={{
+                  height: "100%",
+                  background: `linear-gradient(90deg, ${colors.gold}, ${colors.goldLight}, ${colors.gold})`,
+                  borderRadius: "10px",
+                  animation: "progress 2s ease-in-out infinite",
+                  boxShadow: `0 0 15px ${colors.gold}`,
+                }}
+              />
+            </div>
+            <div style={{ marginTop: "0.8rem", textAlign: "center", color: "rgba(255,255,255,0.7)", fontSize: "0.85rem", fontStyle: "italic" }}>
+              Still counting admissions...
+            </div>
+          </div>
 
           <p
             style={{
-              color: "rgba(255,255,255,0.7)",
+              color: "rgba(255,255,255,0.8)",
               fontSize: "clamp(0.95rem, 2vw, 1.1rem)",
               marginBottom: "2.5rem",
               maxWidth: "600px",
               margin: "0 auto 2.5rem",
-              lineHeight: 1.7,
+              lineHeight: 1.8,
+              fontWeight: "500",
+              letterSpacing: "0.02em",
             }}
           >
-            We've successfully guided over 15,000 students to their dream institutions across India. Now it's your turn to join our success story!
+            ✨ We've successfully guided over <span style={{ color: colors.gold, fontWeight: "700" }}>15,000 students</span> to their dream institutions across India. Now it's your turn to join our success story!
           </p>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: "1.5rem",
-              marginBottom: "2.5rem",
-            }}
-          >
-            {[
-              ["🎓", "15,000+", "Students Admitted"],
-              ["🏫", "500+", "Institutions Partnered"],
-              ["📈", "98%", "Success Rate"],
-            ].map(([icon, stat, label]) => (
-              <div
-                key={label}
-                style={{
-                  background: "rgba(200, 148, 26, 0.15)",
-                  border: `2px solid ${colors.gold}`,
-                  borderRadius: "12px",
-                  padding: "1.5rem",
-                  backdropFilter: "blur(10px)",
-                }}
-              >
-                <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>{icon}</div>
-                <div
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontSize: "clamp(1.3rem, 3vw, 1.8rem)",
-                    color: colors.gold,
-                    fontWeight: "700",
-                  }}
-                >
-                  {stat}
-                </div>
-                <div style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.9rem", marginTop: "0.5rem" }}>
-                  {label}
-                </div>
-              </div>
-            ))}
-          </div>
 
-          <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-            <button
-              onClick={() => setPage("Contact")}
-              style={{
-                background: colors.gold,
-                color: colors.navy,
-                border: "none",
-                padding: "clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2.5rem)",
-                borderRadius: "8px",
-                fontWeight: "700",
-                fontSize: "clamp(0.9rem, 2vw, 1rem)",
-                cursor: "pointer",
-                transition: "all 0.3s",
-                boxShadow: `0 6px 20px rgba(200, 148, 26, 0.4)`,
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.transform = "translateY(-2px)";
-                e.target.style.boxShadow = `0 8px 25px rgba(200, 148, 26, 0.6)`;
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.transform = "translateY(0)";
-                e.target.style.boxShadow = `0 6px 20px rgba(200, 148, 26, 0.4)`;
-              }}
-            >
-              🚀 Start Your Journey Now
-            </button>
-            <button
-              onClick={() => setPage("Contact")}
-              style={{
-                background: "transparent",
-                color: colors.gold,
-                border: `2px solid ${colors.gold}`,
-                padding: "clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2.5rem)",
-                borderRadius: "8px",
-                fontWeight: "700",
-                fontSize: "clamp(0.9rem, 2vw, 1rem)",
-                cursor: "pointer",
-                transition: "all 0.3s",
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = colors.gold;
-                e.target.style.color = colors.navy;
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = "transparent";
-                e.target.style.color = colors.gold;
-              }}
-            >
-              📞 Contact Us Today
-            </button>
-          </div>
 
-          <div
-            style={{
-              marginTop: "2rem",
-              padding: "1.5rem",
-              background: "rgba(200, 148, 26, 0.1)",
-              borderRadius: "12px",
-              border: `1px solid rgba(200, 148, 26, 0.3)`,
-            }}
-          >
-            <div style={{ color: colors.goldLight, fontSize: "0.85rem", fontWeight: "600", marginBottom: "0.5rem" }}>
-              ⏰ Limited Time Offer
-            </div>
-            <div style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.9rem" }}>
-              Get 20% discount on our premium admission packages when you enquire today!
-            </div>
-          </div>
+
+
+
         </div>
       </div>
 
-      {/* Charts Section */}
-      <div style={{ background: colors.white, padding: "clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 2.5rem)" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-            <div style={{ fontSize: "0.75rem", color: colors.gold, fontWeight: "600", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.6rem" }}>Live Statistics</div>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 5vw, 2.5rem)", color: colors.navy, fontWeight: "700" }}>Our Growth & Impact</h2>
-          </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem" }}>
-            {/* Admissions Counter */}
-            <div style={{ background: `linear-gradient(135deg, ${colors.navyLight}, ${colors.navy})`, borderRadius: "16px", padding: "2rem", textAlign: "center", color: colors.white }}>
-              <div style={{ fontSize: "0.85rem", color: colors.goldLight, fontWeight: "600", marginBottom: "1rem", textTransform: "uppercase" }}>Total Admissions</div>
-              <CounterComponent target={15000} />
-              <div style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.7)", marginTop: "1rem" }}>& Still Counting...</div>
-            </div>
-
-            {/* Colleges Pie Chart */}
-            <div style={{ background: colors.offWhite, borderRadius: "16px", padding: "2rem", textAlign: "center" }}>
-              <div style={{ fontSize: "0.85rem", color: colors.gold, fontWeight: "600", marginBottom: "1rem", textTransform: "uppercase" }}>Colleges by Type</div>
-              <div style={{ width: "100%", height: "320px" }}>
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie data={[{ name: "Schools", value: 150 }, { name: "Jr Colleges", value: 120 }, { name: "Degree", value: 130 }, { name: "B.Tech", value: 80 }, { name: "MBBS", value: 20 }]} cx="50%" cy="50%" outerRadius={80} fill="#8884d8" dataKey="value" label={{ fontSize: 12 }}>
-                      <Cell fill={colors.navy} />
-                      <Cell fill={colors.navyLight} />
-                      <Cell fill={colors.gold} />
-                      <Cell fill={colors.goldLight} />
-                      <Cell fill="#25D366" />
-                    </Pie>
-                    <Tooltip formatter={(value) => `${value} colleges`} />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            {/* Admissions Distribution */}
-            <div style={{ background: colors.offWhite, borderRadius: "16px", padding: "2rem", textAlign: "center" }}>
-              <div style={{ fontSize: "0.85rem", color: colors.gold, fontWeight: "600", marginBottom: "1rem", textTransform: "uppercase" }}>Admissions Distribution</div>
-              <div style={{ width: "100%", height: "320px" }}>
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie data={[{ name: "School", value: 4500 }, { name: "Jr College", value: 3200 }, { name: "Degree", value: 3800 }, { name: "B.Tech", value: 2400 }, { name: "MBBS", value: 1100 }]} cx="50%" cy="50%" outerRadius={80} fill="#8884d8" dataKey="value" label={{ fontSize: 12 }}>
-                      <Cell fill={colors.navy} />
-                      <Cell fill={colors.navyLight} />
-                      <Cell fill={colors.gold} />
-                      <Cell fill={colors.goldLight} />
-                      <Cell fill="#25D366" />
-                    </Pie>
-                    <Tooltip formatter={(value) => `${value} admissions`} />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Contact Form Section */}
       <div style={{ background: colors.offWhite, padding: "clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 2.5rem)" }}>
@@ -367,14 +266,19 @@ export default function Home({ setPage }) {
             <div
               style={{
                 fontSize: "0.75rem",
-                color: colors.gold,
-                fontWeight: "600",
+                color: colors.white,
+                background: colors.gold,
+                fontWeight: "700",
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
                 marginBottom: "0.6rem",
+                padding: "0.5rem 1.2rem",
+                display: "inline-block",
+                borderRadius: "6px",
+                boxShadow: `0 4px 12px rgba(200, 148, 26, 0.4)`,
               }}
             >
-              Get in Touch
+              It's Your Turn
             </div>
             <h2
               style={{
@@ -392,172 +296,7 @@ export default function Home({ setPage }) {
           <ContactFormComponent setPage={setPage} />
         </div>
       </div>
-      {/* Hero */}
-      <div
-        style={{
-          background: `linear-gradient(145deg, ${colors.navy} 0%, ${colors.navyMid} 60%, #1E4D9A 100%)`,
-          padding: "clamp(2rem, 5vw, 3rem) clamp(1.5rem, 5vw, 2.5rem)",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        {/* Grid pattern */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            opacity: 0.05,
-            backgroundImage: `linear-gradient(${colors.white} 1px, transparent 1px), linear-gradient(90deg, ${colors.white} 1px, transparent 1px)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
 
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "2rem",
-            alignItems: "center",
-            position: "relative",
-          }}
-        >
-          {/* Left content */}
-          <div>
-            <div
-              className="fade-up"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                background: "rgba(200,148,26,0.18)",
-                border: `1px solid rgba(200,148,26,0.45)`,
-                borderRadius: "100px",
-                padding: "0.35rem 1.1rem",
-                marginBottom: "1.75rem",
-                fontSize: "clamp(0.65rem, 2vw, 0.7rem)",
-              }}
-            >
-              <span
-                style={{
-                  color: colors.goldLight,
-                  fontWeight: "600",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                }}
-              >
-                ✦ Trusted Since 2012 · All India Admissions Support
-              </span>
-            </div>
-            <h1
-              className="fade-up-1"
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(1.5rem, 6vw, 3.8rem)",
-                fontWeight: "800",
-                color: colors.white,
-                lineHeight: 1.15,
-                marginBottom: "1.25rem",
-              }}
-            >
-              Complete Admission
-              <br />
-              <span
-                style={{
-                  background: `linear-gradient(90deg, ${colors.gold}, ${colors.goldLight}, ${colors.gold})`,
-                  backgroundSize: "200% auto",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  animation: "shimmer 3s linear infinite",
-                }}
-              >
-                Solutions for Schools &amp; Colleges
-              </span>
-            </h1>
-            <p
-              className="fade-up-2"
-              style={{
-                color: "rgba(255,255,255,0.65)",
-                fontSize: "clamp(0.95rem, 3vw, 1.1rem)",
-                marginBottom: "2.5rem",
-                lineHeight: 1.7,
-              }}
-            >
-              From Leads to Admissions — We Handle Everything. Digital
-              marketing, automation, inside sales, and counselling under one
-              roof.
-            </p>
-            <div
-              className="fade-up-3"
-              style={{
-                display: "flex",
-                gap: "1rem",
-                flexWrap: "wrap",
-                flexDirection: "column",
-              }}
-            >
-              <button
-                className="cta-btn"
-                onClick={() => setPage("Contact")}
-                style={{
-                  background: colors.gold,
-                  color: colors.white,
-                  border: "none",
-                  padding: "0.9rem 2.2rem",
-                  borderRadius: "8px",
-                  fontWeight: "600",
-                  fontSize: "0.95rem",
-                  transition: "all 0.2s",
-                  width: "100%",
-                  maxWidth: "300px",
-                  cursor: "pointer",
-                }}
-              >
-                Get Started Now →
-              </button>
-              <button
-                className="outline-btn"
-                onClick={() => setPage("Contact")}
-                style={{
-                  background: "rgba(255,255,255,0.08)",
-                  color: colors.white,
-                  border: "1.5px solid rgba(255,255,255,0.3)",
-                  padding: "0.9rem 2rem",
-                  borderRadius: "8px",
-                  fontWeight: "500",
-                  fontSize: "0.95rem",
-                  transition: "all 0.2s",
-                  width: "100%",
-                  maxWidth: "300px",
-                  cursor: "pointer",
-                }}
-              >
-                See How It Works
-              </button>
-            </div>
-          </div>
-
-          {/* Right 3D - Hidden on mobile */}
-          <div
-            style={{
-              height: "400px",
-              display: "none",
-            }}
-            className="hero-3d"
-          >
-            <Hero3D />
-          </div>
-        </div>
-
-        <style>{`
-          @media (min-width: 769px) {
-            .hero-3d {
-              display: block !important;
-            }
-          }
-        `}</style>
-      </div>
 
       {/* Stats bar */}
       <div
@@ -854,6 +593,56 @@ export default function Home({ setPage }) {
           Get Started Now →
         </button>
       </div>
+
+      {/* Floating Chat Button */}
+      <button
+        onClick={() => {
+          const whatsappUrl = `https://wa.me/919381791038?text=Hi, I'm interested in your admission services. Please help me!`;
+          window.open(whatsappUrl, "_blank");
+        }}
+        style={{
+          position: "fixed",
+          bottom: "2rem",
+          right: "2rem",
+          width: "60px",
+          height: "60px",
+          borderRadius: "50%",
+          background: colors.gold,
+          color: colors.white,
+          border: "none",
+          fontSize: "1.5rem",
+          cursor: "pointer",
+          boxShadow: `0 4px 12px rgba(200, 148, 26, 0.4)`,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          transition: "all 0.3s",
+          zIndex: 50,
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.transform = "scale(1.1)";
+          e.target.style.boxShadow = `0 6px 20px rgba(200, 148, 26, 0.6)`;
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.transform = "scale(1)";
+          e.target.style.boxShadow = `0 4px 12px rgba(200, 148, 26, 0.4)`;
+        }}
+      >
+        💬
+      </button>
+
+      <style>{`
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 }
