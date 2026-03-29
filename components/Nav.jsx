@@ -61,7 +61,7 @@ export default function Nav({ page, setPage }) {
                 lineHeight: 1,
               }}
             >
-              EduGrow
+              EduAdmissiongrow
             </div>
             <div
               style={{
@@ -71,7 +71,7 @@ export default function Nav({ page, setPage }) {
                 textTransform: "uppercase",
               }}
             >
-              Admissions
+              .com
             </div>
           </div>
         </div>

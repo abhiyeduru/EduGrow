@@ -310,7 +310,7 @@ export default function Contact() {
             ["📍", colors.navyLight, "Our Office", "Madhapur, Hyderabad – 500081"],
             ["📞", colors.gold, "Phone", "9381791038"],
             ["✉️", "#1A6B4A", "Email", "contact@graviitycloud.com"],
-            ["🌐", "#8B2FC9", "Website", "www.graviitycloud.com"],
+            ["🌐", "#8B2FC9", "Website", "www.eduadmissiongrow.com"],
           ].map(([icon, color, label, val]) => (
             <div
               key={label}

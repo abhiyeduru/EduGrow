@@ -28,7 +28,7 @@ export default function Footer({ setPage }) {
                 marginBottom: "0.5rem",
               }}
             >
-              EduGrow Admissions
+              EduAdmissiongrow.com
             </div>
             <div
               style={{
@@ -86,7 +86,7 @@ export default function Footer({ setPage }) {
               ["📍", "Plot No: 500, 2nd Floor, Madhapur, Hyderabad – 500081"],
               ["📞", "9381791038"],
               ["✉️", "contact@graviitycloud.com"],
-              ["🌐", "www.graviitycloud.com"],
+              ["🌐", "www.eduadmissiongrow.com"],
             ].map(([icon, val]) => (
               <div
                 key={val}
@@ -124,7 +124,7 @@ export default function Footer({ setPage }) {
                 marginBottom: "0.25rem",
               }}
             >
-              GraviITy Cloud
+              🎓 EduAdmissiongrow
             </div>
             <div
               style={{
@@ -132,7 +132,7 @@ export default function Footer({ setPage }) {
                 fontSize: "0.8rem",
               }}
             >
-              @graviitycloud on all platforms
+              .COM
             </div>
             <div style={{ display: "flex", gap: "0.6rem", marginTop: "0.75rem" }}>
               {["📷", "👥", "▶"].map((icon, i) => (
@@ -165,7 +165,7 @@ export default function Footer({ setPage }) {
             fontSize: "0.78rem",
           }}
         >
-          © 2024 EduGrow Admissions · GraviITy Cloud · All rights reserved
+          © 2024 EduAdmissiongrow.COM · All rights reserved
         </div>
       </div>
     </footer>
