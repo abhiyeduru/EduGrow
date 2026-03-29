@@ -123,13 +123,14 @@ export default function Home({ setPage }) {
                   transition: "all 0.2s",
                   width: "100%",
                   maxWidth: "300px",
+                  cursor: "pointer",
                 }}
               >
                 Get Started Now →
               </button>
               <button
                 className="outline-btn"
-                onClick={() => setPage("How It Works")}
+                onClick={() => setPage("Contact")}
                 style={{
                   background: "rgba(255,255,255,0.08)",
                   color: colors.white,
@@ -141,6 +142,7 @@ export default function Home({ setPage }) {
                   transition: "all 0.2s",
                   width: "100%",
                   maxWidth: "300px",
+                  cursor: "pointer",
                 }}
               >
                 See How It Works
@@ -262,6 +264,7 @@ export default function Home({ setPage }) {
               <div
                 key={title}
                 className="card-hover"
+                onClick={() => setPage("Contact")}
                 style={{
                   background: colors.sky,
                   borderRadius: "14px",
@@ -269,6 +272,7 @@ export default function Home({ setPage }) {
                   textAlign: "center",
                   border: `1px solid ${colors.skyMid}`,
                   borderTop: `4px solid ${colors.navy}`,
+                  cursor: "pointer",
                 }}
               >
                 <div style={{ fontSize: "clamp(1.5rem, 4vw, 2rem)", marginBottom: "0.75rem" }}>
@@ -456,6 +460,7 @@ export default function Home({ setPage }) {
             fontWeight: "700",
             fontSize: "0.95rem",
             transition: "all 0.2s",
+            cursor: "pointer",
           }}
         >
           Get Started Now →

@@ -13,8 +13,17 @@ export default function Contact() {
   const [sent, setSent] = useState(false);
 
   const handle = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  
   const submit = () => {
-    if (form.name && form.phone) setSent(true);
+    if (form.name && form.phone) {
+      setSent(true);
+      // Open WhatsApp after 1 second
+      setTimeout(() => {
+        const message = `Hi, I'm ${form.name} from ${form.institution || "an institution"}. I'm interested in your admission services for ${form.type || "our institution"}. Please contact me at ${form.phone}.`;
+        const whatsappUrl = `https://wa.me/919381791038?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, "_blank");
+      }, 1000);
+    }
   };
 
   return (
@@ -68,229 +77,78 @@ export default function Contact() {
         }}
       />
 
-      <div style={{ maxWidth: "980px", margin: "0 auto", padding: "clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 2.5rem)" }}>
+      <div style={{ maxWidth: "700px", margin: "0 auto", padding: "clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 2.5rem)" }}>
+        {/* Enquiry form - shown first */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "2rem",
+            background: colors.white,
+            borderRadius: "16px",
+            padding: "clamp(1.5rem, 3vw, 2rem)",
+            border: `1px solid ${colors.border}`,
+            borderTop: `4px solid ${colors.gold}`,
+            marginBottom: "2rem",
           }}
         >
-          {/* Contact info */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-            {[
-              [
-                "📍",
-                colors.navyLight,
-                "Our Office",
-                "Plot No: 500, 2nd Floor, Opposite Vivin Towers, Beside Taza Kitchen, Near YSR Statue, Madhapur, Hyderabad – 500081",
-              ],
-              ["📞", colors.gold, "Phone", "9381791038"],
-              ["✉️", "#1A6B4A", "Email", "contact@graviitycloud.com"],
-              ["🌐", "#8B2FC9", "Website", "www.graviitycloud.com"],
-            ].map(([icon, color, label, val]) => (
+          {sent ? (
+            <div style={{ textAlign: "center", padding: "2rem 1rem" }}>
+              <div style={{ fontSize: "clamp(2rem, 5vw, 3rem)", marginBottom: "1rem" }}>🎉</div>
               <div
-                key={label}
                 style={{
-                  background: colors.white,
-                  borderRadius: "14px",
-                  padding: "clamp(1rem, 3vw, 1.4rem)",
-                  border: `1px solid ${colors.border}`,
-                  borderLeft: `4px solid ${color}`,
-                  display: "flex",
-                  gap: "1rem",
-                  alignItems: "flex-start",
+                  fontFamily: "'Playfair Display', serif",
+                  color: colors.navy,
+                  fontSize: "clamp(1.1rem, 3vw, 1.4rem)",
+                  fontWeight: "700",
+                  marginBottom: "0.5rem",
                 }}
               >
-                <div
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "10px",
-                    background: `${color}18`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "clamp(1rem, 2vw, 1.2rem)",
-                    flexShrink: 0,
-                  }}
-                >
-                  {icon}
-                </div>
-                <div>
-                  <div
-                    style={{
-                      fontSize: "0.72rem",
-                      color: colors.textMuted,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.08em",
-                      marginBottom: "0.2rem",
-                    }}
-                  >
-                    {label}
-                  </div>
-                  <div
-                    style={{
-                      color: colors.navy,
-                      fontWeight: "600",
-                      fontSize: "clamp(0.85rem, 2vw, 0.9rem)",
-                      lineHeight: 1.5,
-                    }}
-                  >
-                    {val}
-                  </div>
-                </div>
+                Enquiry Submitted!
               </div>
-            ))}
-
-            {/* Social */}
-            <div style={{ background: colors.navy, borderRadius: "14px", padding: "1.5rem" }}>
               <div
                 style={{
-                  color: colors.goldLight,
-                  fontWeight: "700",
-                  fontSize: "0.9rem",
+                  color: colors.textMuted,
+                  fontSize: "clamp(0.85rem, 2vw, 0.9rem)",
+                  lineHeight: 1.6,
                   marginBottom: "1rem",
                 }}
               >
-                Follow @graviitycloud
+                Thank you, {form.name}! Our team will reach out to you via WhatsApp shortly.
               </div>
-              <div style={{ display: "flex", gap: "0.75rem" }}>
-                {[
-                  ["📷", "Instagram"],
-                  ["👥", "Facebook"],
-                  ["▶", "YouTube"],
-                ].map(([icon, label]) => (
-                  <div
-                    key={label}
-                    style={{
-                      flex: 1,
-                      background: "rgba(200,148,26,0.18)",
-                      border: "1px solid rgba(200,148,26,0.35)",
-                      borderRadius: "10px",
-                      padding: "0.75rem 0.5rem",
-                      textAlign: "center",
-                    }}
-                  >
-                    <div style={{ fontSize: "1.2rem" }}>{icon}</div>
-                    <div
-                      style={{
-                        color: "rgba(255,255,255,0.55)",
-                        fontSize: "clamp(0.6rem, 1.5vw, 0.68rem)",
-                        marginTop: "0.3rem",
-                      }}
-                    >
-                      {label}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <button
+                onClick={() => setSent(false)}
+                style={{
+                  background: colors.navy,
+                  color: colors.white,
+                  border: "none",
+                  padding: "0.7rem 1.75rem",
+                  borderRadius: "8px",
+                  fontWeight: "600",
+                  fontSize: "0.9rem",
+                  cursor: "pointer",
+                }}
+              >
+                Submit Another →
+              </button>
             </div>
-          </div>
-
-          {/* Enquiry form */}
-          <div
-            style={{
-              background: colors.white,
-              borderRadius: "16px",
-              padding: "clamp(1.5rem, 3vw, 2rem)",
-              border: `1px solid ${colors.border}`,
-              borderTop: `4px solid ${colors.gold}`,
-            }}
-          >
-            {sent ? (
-              <div style={{ textAlign: "center", padding: "2rem 1rem" }}>
-                <div style={{ fontSize: "clamp(2rem, 5vw, 3rem)", marginBottom: "1rem" }}>🎉</div>
-                <div
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                    color: colors.navy,
-                    fontSize: "clamp(1.1rem, 3vw, 1.4rem)",
-                    fontWeight: "700",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  Enquiry Submitted!
-                </div>
-                <div
-                  style={{
-                    color: colors.textMuted,
-                    fontSize: "clamp(0.85rem, 2vw, 0.9rem)",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Thank you, {form.name}! Our team will reach out to you within
-                  24 hours.
-                </div>
-                <button
-                  onClick={() => setSent(false)}
-                  style={{
-                    marginTop: "1.5rem",
-                    background: colors.navy,
-                    color: colors.white,
-                    border: "none",
-                    padding: "0.7rem 1.75rem",
-                    borderRadius: "8px",
-                    fontWeight: "600",
-                    fontSize: "0.9rem",
-                  }}
-                >
-                  Submit Another →
-                </button>
-              </div>
-            ) : (
-              <>
-                <h2
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                    color: colors.navy,
-                    fontSize: "clamp(1.1rem, 3vw, 1.3rem)",
-                    fontWeight: "700",
-                    marginBottom: "1.5rem",
-                  }}
-                >
-                  Institution Enquiry Form
-                </h2>
-                {[
-                  ["name", "Your Name *", "text"],
-                  ["institution", "Institution Name", "text"],
-                  ["phone", "Phone Number *", "tel"],
-                  ["email", "Email Address", "email"],
-                ].map(([key, label, type]) => (
-                  <div key={key} style={{ marginBottom: "1rem" }}>
-                    <label
-                      style={{
-                        display: "block",
-                        fontSize: "0.78rem",
-                        color: colors.textMuted,
-                        marginBottom: "0.35rem",
-                        fontWeight: "500",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.06em",
-                      }}
-                    >
-                      {label}
-                    </label>
-                    <input
-                      type={type}
-                      value={form[key]}
-                      onChange={(e) => handle(key, e.target.value)}
-                      style={{
-                        width: "100%",
-                        padding: "0.7rem 0.9rem",
-                        borderRadius: "8px",
-                        border: `1px solid ${colors.border}`,
-                        background: colors.offWhite,
-                        fontSize: "clamp(0.85rem, 2vw, 0.9rem)",
-                        color: colors.text,
-                        outline: "none",
-                        fontFamily: "'DM Sans', sans-serif",
-                        boxSizing: "border-box",
-                      }}
-                    />
-                  </div>
-                ))}
-                <div style={{ marginBottom: "1rem" }}>
+          ) : (
+            <>
+              <h2
+                style={{
+                  fontFamily: "'Playfair Display', serif",
+                  color: colors.navy,
+                  fontSize: "clamp(1.1rem, 3vw, 1.3rem)",
+                  fontWeight: "700",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                Institution Enquiry Form
+              </h2>
+              {[
+                ["name", "Your Name *", "text"],
+                ["institution", "Institution Name", "text"],
+                ["phone", "Phone Number *", "tel"],
+                ["email", "Email Address", "email"],
+              ].map(([key, label, type]) => (
+                <div key={key} style={{ marginBottom: "1rem" }}>
                   <label
                     style={{
                       display: "block",
@@ -302,56 +160,12 @@ export default function Contact() {
                       letterSpacing: "0.06em",
                     }}
                   >
-                    Institution Type
+                    {label}
                   </label>
-                  <select
-                    value={form.type}
-                    onChange={(e) => handle("type", e.target.value)}
-                    style={{
-                      width: "100%",
-                      padding: "0.7rem 0.9rem",
-                      borderRadius: "8px",
-                      border: `1px solid ${colors.border}`,
-                      background: colors.offWhite,
-                      fontSize: "clamp(0.85rem, 2vw, 0.9rem)",
-                      color: form.type ? colors.text : colors.textMuted,
-                      fontFamily: "'DM Sans', sans-serif",
-                      boxSizing: "border-box",
-                    }}
-                  >
-                    <option value="">Select type…</option>
-                    {[
-                      "School",
-                      "Junior College",
-                      "Degree College",
-                      "B.Tech / Engineering",
-                      "MBBS / Medical",
-                      "Other",
-                    ].map((o) => (
-                      <option key={o} value={o}>
-                        {o}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div style={{ marginBottom: "1.5rem" }}>
-                  <label
-                    style={{
-                      display: "block",
-                      fontSize: "0.78rem",
-                      color: colors.textMuted,
-                      marginBottom: "0.35rem",
-                      fontWeight: "500",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.06em",
-                    }}
-                  >
-                    Message (Optional)
-                  </label>
-                  <textarea
-                    value={form.message}
-                    onChange={(e) => handle("message", e.target.value)}
-                    rows={3}
+                  <input
+                    type={type}
+                    value={form[key]}
+                    onChange={(e) => handle(key, e.target.value)}
                     style={{
                       width: "100%",
                       padding: "0.7rem 0.9rem",
@@ -360,32 +174,212 @@ export default function Contact() {
                       background: colors.offWhite,
                       fontSize: "clamp(0.85rem, 2vw, 0.9rem)",
                       color: colors.text,
-                      resize: "vertical",
+                      outline: "none",
                       fontFamily: "'DM Sans', sans-serif",
                       boxSizing: "border-box",
                     }}
-                    placeholder="Tell us about your institution and admission goals…"
                   />
                 </div>
-                <button
-                  className="cta-btn"
-                  onClick={submit}
+              ))}
+              <div style={{ marginBottom: "1rem" }}>
+                <label
                   style={{
-                    width: "100%",
-                    background: colors.navy,
-                    color: colors.white,
-                    border: "none",
-                    padding: "0.9rem",
-                    borderRadius: "8px",
-                    fontWeight: "700",
-                    fontSize: "0.95rem",
-                    transition: "all 0.2s",
+                    display: "block",
+                    fontSize: "0.78rem",
+                    color: colors.textMuted,
+                    marginBottom: "0.35rem",
+                    fontWeight: "500",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.06em",
                   }}
                 >
-                  Submit Enquiry →
-                </button>
-              </>
-            )}
+                  Institution Type
+                </label>
+                <select
+                  value={form.type}
+                  onChange={(e) => handle("type", e.target.value)}
+                  style={{
+                    width: "100%",
+                    padding: "0.7rem 0.9rem",
+                    borderRadius: "8px",
+                    border: `1px solid ${colors.border}`,
+                    background: colors.offWhite,
+                    fontSize: "clamp(0.85rem, 2vw, 0.9rem)",
+                    color: form.type ? colors.text : colors.textMuted,
+                    fontFamily: "'DM Sans', sans-serif",
+                    boxSizing: "border-box",
+                  }}
+                >
+                  <option value="">Select type…</option>
+                  {[
+                    "School",
+                    "Junior College",
+                    "Degree College",
+                    "B.Tech / Engineering",
+                    "MBBS / Medical",
+                    "Other",
+                  ].map((o) => (
+                    <option key={o} value={o}>
+                      {o}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div style={{ marginBottom: "1.5rem" }}>
+                <label
+                  style={{
+                    display: "block",
+                    fontSize: "0.78rem",
+                    color: colors.textMuted,
+                    marginBottom: "0.35rem",
+                    fontWeight: "500",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.06em",
+                  }}
+                >
+                  Message (Optional)
+                </label>
+                <textarea
+                  value={form.message}
+                  onChange={(e) => handle("message", e.target.value)}
+                  rows={3}
+                  style={{
+                    width: "100%",
+                    padding: "0.7rem 0.9rem",
+                    borderRadius: "8px",
+                    border: `1px solid ${colors.border}`,
+                    background: colors.offWhite,
+                    fontSize: "clamp(0.85rem, 2vw, 0.9rem)",
+                    color: colors.text,
+                    resize: "vertical",
+                    fontFamily: "'DM Sans', sans-serif",
+                    boxSizing: "border-box",
+                  }}
+                  placeholder="Tell us about your institution and admission goals…"
+                />
+              </div>
+              <button
+                className="cta-btn"
+                onClick={submit}
+                style={{
+                  width: "100%",
+                  background: colors.navy,
+                  color: colors.white,
+                  border: "none",
+                  padding: "0.9rem",
+                  borderRadius: "8px",
+                  fontWeight: "700",
+                  fontSize: "0.95rem",
+                  transition: "all 0.2s",
+                  cursor: "pointer",
+                }}
+              >
+                Submit & Connect on WhatsApp →
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* Contact info below form */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1.5rem" }}>
+          {[
+            ["📍", colors.navyLight, "Our Office", "Madhapur, Hyderabad – 500081"],
+            ["📞", colors.gold, "Phone", "9381791038"],
+            ["✉️", "#1A6B4A", "Email", "contact@graviitycloud.com"],
+            ["🌐", "#8B2FC9", "Website", "www.graviitycloud.com"],
+          ].map(([icon, color, label, val]) => (
+            <div
+              key={label}
+              style={{
+                background: colors.white,
+                borderRadius: "14px",
+                padding: "clamp(1rem, 3vw, 1.4rem)",
+                border: `1px solid ${colors.border}`,
+                borderLeft: `4px solid ${color}`,
+                textAlign: "center",
+              }}
+            >
+              <div style={{ fontSize: "clamp(1.5rem, 4vw, 2rem)", marginBottom: "0.5rem" }}>
+                {icon}
+              </div>
+              <div
+                style={{
+                  fontSize: "0.72rem",
+                  color: colors.textMuted,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                  marginBottom: "0.3rem",
+                }}
+              >
+                {label}
+              </div>
+              <div
+                style={{
+                  color: colors.navy,
+                  fontWeight: "600",
+                  fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
+                }}
+              >
+                {val}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Social Links */}
+        <div
+          style={{
+            marginTop: "2rem",
+            background: colors.navy,
+            borderRadius: "14px",
+            padding: "1.5rem",
+            textAlign: "center",
+          }}
+        >
+          <div
+            style={{
+              color: colors.goldLight,
+              fontWeight: "700",
+              fontSize: "0.9rem",
+              marginBottom: "1rem",
+            }}
+          >
+            Follow @graviitycloud
+          </div>
+          <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center" }}>
+            {[
+              ["📷", "Instagram"],
+              ["👥", "Facebook"],
+              ["▶", "YouTube"],
+            ].map(([icon, label]) => (
+              <div
+                key={label}
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  background: "rgba(200,148,26,0.18)",
+                  border: "1px solid rgba(200,148,26,0.35)",
+                  borderRadius: "10px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  transition: "all 0.2s",
+                }}
+              >
+                <div style={{ fontSize: "1.5rem" }}>{icon}</div>
+                <div
+                  style={{
+                    color: "rgba(255,255,255,0.55)",
+                    fontSize: "0.6rem",
+                    marginTop: "0.2rem",
+                  }}
+                >
+                  {label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

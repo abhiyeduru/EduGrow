@@ -1,6 +1,6 @@
 import { colors } from "../styles/theme";
 
-export default function Services() {
+export default function Services({ setPage }) {
   const services = [
     {
       icon: "📢",
@@ -110,6 +110,7 @@ export default function Services() {
             <div
               key={title}
               className="card-hover"
+              onClick={() => setPage("Contact")}
               style={{
                 background: colors.white,
                 borderRadius: "16px",
@@ -119,6 +120,7 @@ export default function Services() {
                 display: "flex",
                 flexDirection: "column",
                 gap: "0.85rem",
+                cursor: "pointer",
               }}
             >
               <div
